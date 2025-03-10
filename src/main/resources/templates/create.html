@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,15 +10,16 @@
     <title>Cadastro de Tarefa</title>
 </head>
 <body>
-    <form method="POST" action="/create">
+    <form method="POST" action="/create" th:object="${task}">
+        <input type="hidden" th:value="${task.id}" name="id">
         <div class="mb-3">
-          <label for="exampleInputName1" class="form-label">Nome da Tarefa</label>
-          <input type="text" class="form-control" name="name">
+          <label class="form-label">Nome da Tarefa</label>
+          <input type="text" class="form-control" name="name" th:value="${task.name}">
         </div>
-        
+
         <div class="mb-3">
-          <label for="exampleInputDate1" class="form-label">Data do Envio</label>
-          <input type="text" class="form-control" name="date">
+          <label class="form-label">Data do Envio</label>
+          <input type="text" class="form-control" name="date" th:value="${task.date}">
         </div>
 
         <button type="submit" class="btn btn-primary">Enviar</button>

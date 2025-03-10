@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,15 +16,20 @@
             <th scope="col">#</th>
             <th scope="col">Nome</th>
             <th scope="col">Data</th>
+            <th scope="col">#</th>
           </tr>
         </thead>
         <tbody>
-          <tr data-th-each="task: ${tasks}">
-            <td data-th-text="${task.id}"></td>
-            <td data-th-text="${task.name}"></td>
-            <td data-th-text="${{task.date}}"></td>
+          <tr th:each="task: ${tasks}">
+            <td th:text="${task.id}"></td>
+            <td th:text="${task.name}"></td>
+            <td th:text="${{task.date}}"></td>
+            <td>
+                <a th:href="@{'/edit/'+${task.id}}">Editar</a>
+            </td>
           </tr>
         </tbody>
       </table>
+    <a href="/create">Enviar</a>
 </body>
 </html>
